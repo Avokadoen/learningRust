@@ -1,0 +1,23 @@
+use std::fmt; // import fmt
+
+// Debug is derived to enable display?
+#[derive(Debug)]
+struct MyName(char, char, char, char, char);
+
+// Implement `Display` for `MyName`.
+impl fmt::Display for MyName {
+    // this is a function that takes self as a reference and a formatter and return result?
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // Use `self.number` to refer to each positional data point.
+        write!(f, "({}{}{}{}{})", self.0, self.1, self.2, self.3, self.4)
+    }
+}
+
+fn main() {
+  // using snake case to make lint happy
+  let my_name = MyName('A','k','s','e','l');
+
+  println!("Compare structures:");
+  println!("Display: {}", my_name);
+  println!("Debug: {:?}", my_name);
+}
